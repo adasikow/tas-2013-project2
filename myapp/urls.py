@@ -1,17 +1,17 @@
-from django.conf.urls import patterns, include, url
-
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.conf.urls.defaults import *
+from django.contrib.auth.forms import AuthenticationForm
+from django.views.generic import RedirectView
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'myapp.views.home', name='home'),
-    # url(r'^myapp/', include('myapp.foo.urls')),
+    (r'^$', RedirectView.as_view(url='/guestbook/')),
+    (r'^guestbook/', include('guestbook.urls')),
 
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+    # auth specific urls
+	# nie dziala
+    #(r'^accounts/create_user/$', 'guestbook.views.create_new_user'),
+    #(r'^accounts/login/$', 'django.contrib.auth.views.login',
+    #    {'authentication_form': AuthenticationForm,
+    #    'template_name': 'guestbook/login.html',}),
+    #(r'^accounts/logout/$', 'django.contrib.auth.views.logout',
+    #    {'next_page': '/guestbook/',}),
 )

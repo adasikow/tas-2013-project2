@@ -1,0 +1,20 @@
+﻿<!-- Corresponding Django object output in django-guestbook/guestbook/templates/guestbook/index.html -->
+
+{% for greeting in greetings %}
+    <br>
+    <small>[<i>{{ greeting.date.ctime }}</i>]</small>
+    <b>
+    {% if greeting.author %}
+        <code>{{ greeting.author.username }}</code>
+    {% else %}
+        <i>anonymous</i>
+    {% endif %}
+    </b>
+    wrote:
+    {{ greeting.content }}
+{% endfor %}
+
+   <form action="/guestbook/sign" method="post">{% csrf_token %}
+        <table>{{ form }}</table>
+        <input type="submit" value="Sign Guestbook" />
+   </form>

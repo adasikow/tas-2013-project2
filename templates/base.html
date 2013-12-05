@@ -1,0 +1,10 @@
+﻿<!-- Corresponding Django auth in django-guestbook/templates/base.html -->
+
+Hello
+{% if user.is_authenticated %}
+    {{ user.username }}!
+    [<a href="{% url django.contrib.auth.views.logout %}"><b>sign out</b></a>]
+{% else %}
+    World!
+    [<a href="{% url django.contrib.auth.views.login %}"><b>sign in</b></a>]
+{% endif %}
