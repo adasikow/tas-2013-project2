@@ -12,11 +12,12 @@ Oczywiście musisz jeszcze pamiętać o Google App Engine:
 https://developers.google.com/appengine/downloads
 
 
-Przed uruchomieniem radziłbym też zadeklarować w wierszu poleceń zmienną:
---na Linuxie:
+Przed uruchomieniem radziłbym też zadeklarować w wierszu poleceń zmienną PYTHONPATH:
+
+na Linuxie:
 PYTHONPATH=.
 
---na Windowsie:
+na Windowsie:
 set PYTHONPATH=.
 
 Dzięki temu Python będzie szukał wymaganych modułów w katalogu bieżącym.
