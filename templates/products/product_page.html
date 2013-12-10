@@ -3,7 +3,13 @@
         <td> {{ product.name }} </td>
         <td> {{ product.category }} </td>
         <td> {{ product.producer }} </td>
-        <td> {{ product.actual_rating }} </td>
+        <td>
+        {% if product.actual_rating %}
+            {{ product.actual_rating }}
+        {% else %}
+            <i>Brak oceny</i>
+        {% endif %}
+        </td>
         <td> {{ product.description }} </td>
     </tr>
 </table>
@@ -19,7 +25,7 @@ Recenzje produktu:
     <tr>
         <td>
         {% if review.author %}
-            <code>{{ review.author }}</code>
+            {{ review.author }}
         {% else %}
             <i>Anonim</i>
         {% endif %}

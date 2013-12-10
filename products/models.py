@@ -32,7 +32,6 @@ class Product(models.Model):
     )
     category = models.CharField(max_length = 30, choices = category_choices, default = 'Computer')
     producer = models.CharField(max_length = 30)
-    #actual_rating = models.DecimalField(null = True, blank = True, default = Decimal((0, (0, 0), -1)), max_digits = 10, decimal_places = 2)
     actual_rating = models.FloatField(null = True, blank = True, default = 0.0)
 
 class ProductReview(models.Model):
@@ -40,17 +39,16 @@ class ProductReview(models.Model):
     author = models.CharField(max_length = 30, null = True, blank = True)
     date = models.DateTimeField(auto_now_add = True)
     rating_choices = (
-        (1.0, 1),
-        (2.0, 2),
-        (3.0, 3),
-        (4.0, 4),
-        (5.0, 5),
-        (6.0, 6),
-        (7.0, 7),
-        (8.0, 8),
-        (9.0, 9),
-        (10.0, 10),
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+        (6, 6),
+        (7, 7),
+        (8, 8),
+        (9, 9),
+        (10, 10),
     )
-    #rating = models.DecimalField(choices = rating_choices, default = 5)
-    rating = models.FloatField(choices = rating_choices, default = 5.0)
+    rating = models.FloatField(choices = rating_choices, default = 5)
     content = models.TextField()

@@ -7,12 +7,9 @@ from django.http import HttpResponseRedirect
 def calculate_rating(id):
     reviews = ProductReview.objects.filter(product_id = id)
     sum_of_ratings = 0.0
-    n = 0
     for review in reviews:
         sum_of_ratings = sum_of_ratings + float(review.rating)
-        n = n + 1
-    
-    return float(sum_of_ratings / float(n))
+    return sum_of_ratings / len(reviews)
 
 def list_products(request):
     products = Product.objects.all().order_by('name')[:20]
@@ -46,11 +43,11 @@ def add_product_review(request, product_id):
     return HttpResponseRedirect('/products/' + str(product_id))
     
 def list_top_products(request):
-    top_products = Products.objects.all().order_by('-current_rating')[:10]
-    return render(request, 'products/top.html',
-        { 'top_products' : top_products })
+    top_products = Product.objects.all().order_by('-actual_rating')[:10]
+    return render(request, 'products/ranking.html',
+        { 'products' : top_products })
 
 def list_worst_products(request):
-    worst_products = Products.objects.all().order_by('current_rating')[:10]
-    return render(request, 'products/worst.html',
-        { 'worst_products' : worst_products })
+    worst_products = Product.objects.all().order_by('actual_rating')[:10]
+    return render(request, 'products/ranking.html',
+        { 'products' : worst_products })

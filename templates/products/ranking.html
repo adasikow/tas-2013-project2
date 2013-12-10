@@ -1,12 +1,4 @@
-﻿<a href='/products/top'> 10 Najlepszych produktów </a>
-<a href='/products/worst'> 10 Najgorszych produktów </a>
-
-<form action="/products/add" method="post">{% csrf_token %}
-    <table>{{ form }}</table>
-    <input type="submit" value="Dodaj produkt" />
-</form>
-
-<table>
+﻿<table>
 {% for product in products %}
         <tr>
             <td> {{ product.name }} </td>
