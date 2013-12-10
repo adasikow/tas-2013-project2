@@ -5,15 +5,14 @@ from products.models import *
 from django.http import HttpResponseRedirect
 
 def calculate_rating(id):
-    product = Product.objects.get(id = id)
     reviews = ProductReview.objects.filter(product_id = id)
-    sum_of_ratings = 0
+    sum_of_ratings = 0.0
     n = 0
     for review in reviews:
-        sum_of_ratings = sum_of_ratings + review.rating
+        sum_of_ratings = sum_of_ratings + float(review.rating)
         n = n + 1
-    product.rating = sum_of_ratings / n
-    product.save()
+    
+    return float(sum_of_ratings / float(n))
 
 def list_products(request):
     products = Product.objects.all().order_by('name')[:20]
@@ -42,7 +41,8 @@ def add_product_review(request, product_id):
             product = Product.objects.get(id = product_id)
             product_review.product = product
             product_review.save()
-    calculate_rating(product_id)
+            product.actual_rating = calculate_rating(product_id)
+            product.save()
     return HttpResponseRedirect('/products/' + str(product_id))
     
 def list_top_products(request):
