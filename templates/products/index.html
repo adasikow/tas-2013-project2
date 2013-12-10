@@ -1,0 +1,16 @@
+﻿<form action="/products/add" method="post">{% csrf_token %}
+    <table>{{ form }}</table>
+    <input type="submit" value="Dodaj produkt" />
+</form>
+
+<table>
+{% for product in products %}
+        <tr>
+            <td> {{ product.name }} </td>
+            <td> {{ product.category }} </td>
+            <td> {{ product.producer }} </td>
+            <td> {{ product.actual_rating }} </td>
+            <td> <a href='/products/{{ product.id }}'>Strona produktu</a>
+        </tr>
+{% endfor %}
+</table>

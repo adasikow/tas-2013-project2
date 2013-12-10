@@ -1,0 +1,33 @@
+<table>
+    <tr>
+        <td> {{ product.name }} </td>
+        <td> {{ product.category }} </td>
+        <td> {{ product.producer }} </td>
+        <td> {{ product.actual_rating }} </td>
+        <td> {{ product.description }} </td>
+    </tr>
+</table>
+
+<form action="{{ product.id }}/add_review" method="post">{% csrf_token %}
+        <table>{{ form }}</table>
+        <input type="submit" value="Dodaj recenzje" />
+</form>
+
+Recenzje produktu:
+<table>
+{% for review in reviews %}
+    <tr>
+        <td>
+        {% if review.author %}
+            <code>{{ review.author }}</code>
+        {% else %}
+            <i>Anonim</i>
+        {% endif %}
+        </td>
+        <td> {{ review.date }} </td>
+        <td> {{ review.rating }} </td>
+        <td> {{ review.content }} </td>
+    </tr>
+{% endfor %}
+</table>
+    

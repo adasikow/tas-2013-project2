@@ -3,8 +3,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.views.generic import RedirectView
 
 urlpatterns = patterns('',
-    (r'^$', RedirectView.as_view(url='/guestbook/')),
-    (r'^guestbook/', include('guestbook.urls')),
+    (r'^$', RedirectView.as_view(url='/products/')),
+    (r'^products/', include('products.urls')),
 
     # auth specific urls
 	# nie dziala
