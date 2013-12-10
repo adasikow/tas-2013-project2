@@ -1,0 +1,19 @@
+<a href='/services/{{ category }}/top'> 10 Najlepszych usług w kategorii "{{ category }}"</a>
+<a href='/services/{{ category }}/worst'> 10 Najgorszych usług w kategorii "{{ category }}"</a>
+
+<table>
+{% for service in services %}
+        <tr>
+            <td> {{ service.name }} </td>
+            <td> {{ service.producer }} </td>
+            <td>
+            {% if service.actual_rating %}
+                {{ service.actual_rating }}
+            {% else %}
+                <i>Brak oceny</i>
+            {% endif %}
+            </td>
+            <td> <a href='/services/{{ service.id }}'>Strona produktu</a>
+        </tr>
+{% endfor %}
+</table>

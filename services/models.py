@@ -1,3 +1,49 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 
-# Create your models here.
+class Service(models.Model):
+	"""docstring for Services"""
+	name = models.CharField(max_length = 150)
+	description = models.TextField()
+	category_choices = (
+		('building', 'Budowa, remont'),
+		('kids', 'Dzieci, zwierzęta, opieka'),
+		('education', 'Edukacja, szkolenia'),
+		('company', 'Firma, biuro'),
+		('graphics', 'Grafika, multimedia'),
+		('it', 'Informatyka, telekomunikacja'),
+		('culture', 'Kultura, sztuka'),
+		('marketing', 'Marketing, reklama'),
+		('moto', 'Motoryzacja, transport'),
+		('repair', 'Naprawa, serwis'),
+		('printing', 'Poligrafia'),
+		('housework', 'Prace domowe, ogród'),
+		('law', 'Prawo, finanse'),
+		('entertainment', 'Rozrywka, imprezy'),
+		('craft', 'Rzemiosło, fachowcy'),
+		('sport', 'Sport, turystyka'),
+		('translations', 'Teksty, tłumaczenia'),
+		('health', 'Zdrowie, uroda'),
+	)
+	performer = models.CharField(max_length = 100)
+	category = models.CharField(max_length = 30, choices = category_choices, default = 'Building')
+	actual_rating = models.FloatField(null = True, blank = True, default = 0.0)	
+
+class ServiceReview(models.Model):
+    service = models.ForeignKey(Service)
+    author = models.CharField(max_length = 30, null = True, blank = True)
+    date = models.DateTimeField(auto_now_add = True)
+    rating_choices = (
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+        (6, 6),
+        (7, 7),
+        (8, 8),
+        (9, 9),
+        (10, 10),
+    )
+    rating = models.FloatField(choices = rating_choices, default = 5)
+    content = models.TextField()

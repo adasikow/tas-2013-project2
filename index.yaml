@@ -42,3 +42,8 @@ indexes:
   properties:
   - name: category
   - name: name
+
+- kind: services_service
+  properties:
+  - name: category
+  - name: name

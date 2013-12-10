@@ -1,0 +1,39 @@
+<table>
+    <tr>
+        <td> {{ service.name }} </td>
+        <td> {{ service.category }} </td>
+        <td> {{ service.performer }} </td>
+        <td>
+        {% if service.actual_rating %}
+            {{ service.actual_rating }}
+        {% else %}
+            <i>Brak oceny</i>
+        {% endif %}
+        </td>
+        <td> {{ service.description }} </td>
+    </tr>
+</table>
+
+<form action="{{ service.id }}/add_review" method="post">{% csrf_token %}
+        <table>{{ form }}</table>
+        <input type="submit" value="Dodaj recenzje" />
+</form>
+
+Recenzje usługi:
+<table>
+{% for review in reviews %}
+    <tr>
+        <td>
+        {% if review.author %}
+            {{ review.author }}
+        {% else %}
+            <i>Anonim</i>
+        {% endif %}
+        </td>
+        <td> {{ review.date }} </td>
+        <td> {{ review.rating }} </td>
+        <td> {{ review.content }} </td>
+    </tr>
+{% endfor %}
+</table>
+    

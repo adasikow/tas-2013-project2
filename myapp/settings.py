@@ -124,6 +124,7 @@ INSTALLED_APPS = (
     'dbindexer',
 	'guestbook',
     'products',
+    'services',
 
     # djangoappengine should come last, so it can override a few manage.py commands
     'djangoappengine',

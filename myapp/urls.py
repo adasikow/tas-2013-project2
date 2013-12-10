@@ -5,7 +5,7 @@ from django.views.generic import RedirectView
 urlpatterns = patterns('',
     (r'^$', RedirectView.as_view(url='/products/')),
     (r'^products/', include('products.urls')),
-
+    (r'^services/', include('services.urls')),
     # auth specific urls
 	# nie dziala
     #(r'^accounts/create_user/$', 'guestbook.views.create_new_user'),

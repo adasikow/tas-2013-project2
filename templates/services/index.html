@@ -1,0 +1,25 @@
+﻿<a href='/services/top'> 10 Najlepszych usług </a>
+<a href='/services/worst'> 10 Najgorszych usług </a>
+
+<form action="/services/add" method="post">{% csrf_token %}
+    <table>{{ form }}</table>
+    <input type="submit" value="Dodaj usługę" />
+</form>
+
+<table>
+{% for service in services %}
+        <tr>
+            <td> {{ service.name }} </td>
+            <td> {{ service.category }} </td>
+            <td> {{ service.performer }} </td>
+            <td>
+            {% if service.actual_rating %}
+                {{ service.actual_rating }}
+            {% else %}
+                <i>Brak oceny</i>
+            {% endif %}
+            </td>
+            <td> <a href='/services/{{ service.id }}'>Strona usługi</a>
+        </tr>
+{% endfor %}
+</table>
