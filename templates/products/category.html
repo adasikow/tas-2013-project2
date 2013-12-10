@@ -1,0 +1,19 @@
+﻿<a href='/products/{{ category }}/top'> 10 Najlepszych produktów w kategorii "{{ category }}"</a>
+<a href='/products/{{ category }}/worst'> 10 Najgorszych produktów w kategorii "{{ category }}"</a>
+
+<table>
+{% for product in products %}
+        <tr>
+            <td> {{ product.name }} </td>
+            <td> {{ product.producer }} </td>
+            <td>
+            {% if product.actual_rating %}
+                {{ product.actual_rating }}
+            {% else %}
+                <i>Brak oceny</i>
+            {% endif %}
+            </td>
+            <td> <a href='/products/{{ product.id }}'>Strona produktu</a>
+        </tr>
+{% endfor %}
+</table>

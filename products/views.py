@@ -1,4 +1,3 @@
-# Create your views here.
 from django.shortcuts import render
 from products.forms import *
 from products.models import *
@@ -15,6 +14,11 @@ def list_products(request):
     products = Product.objects.all().order_by('name')[:20]
     return render(request, 'products/index.html',
         { 'products': products, 'form': AddProductForm() })
+        
+def list_products_from_category(request, category):
+    products = Product.objects.filter(category = category).order_by('name')[:20]
+    return render(request, 'products/category.html',
+        { 'products': products, 'category': category })
 
 def product_page(request, product_id):
     product = Product.objects.get(id = product_id)
@@ -42,12 +46,30 @@ def add_product_review(request, product_id):
             product.save()
     return HttpResponseRedirect('/products/' + str(product_id))
     
-def list_top_products(request):
-    top_products = Product.objects.all().order_by('-actual_rating')[:10]
+def list_top_products(request, category = None):
+    if(category is None):
+        top_products = Product.objects.all().order_by('-actual_rating')[:10]
+    else:
+        top_products = Product.objects.filter(category = category).order_by('-actual_rating')[:10]
     return render(request, 'products/ranking.html',
         { 'products' : top_products })
 
-def list_worst_products(request):
-    worst_products = Product.objects.all().order_by('actual_rating')[:10]
+def list_worst_products(request, category = None):
+    if(category is None):
+        worst_products = Product.objects.all().order_by('actual_rating')[:10]
+    else:
+        worst_products = Product.objects.filter(category = category).order_by('actual_rating')[:10]
     return render(request, 'products/ranking.html',
         { 'products' : worst_products })
+
+'''        
+def list_top_products_from_category(request, category):
+    top_products_from_category = Product.objects.filter(category = category).order_by('-actual_rating')[:10]
+    return render(request, 'products/ranking.html',
+        { 'products' : top_products_from_category })
+
+def list_worst_products_from_category(request, category):
+    worst_products_from_category = Product.objects.filter(category = category).order_by('actual_rating')[:10]
+    return render(request, 'products/ranking.html',
+        { 'products' : worst_products_from_category })
+'''
