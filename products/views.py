@@ -13,8 +13,8 @@ def calculate_rating(id):
 
 def list_products(request):
     products = Product.objects.all().order_by('name')[:20]
-    return render(request, 'products/content.html',
-        {'log_in_form': AuthenticationForm(), 'products': products, 'form': AddProductForm() })
+    return render(request, 'products/ranking.html',
+        {'log_in_form': AuthenticationForm(), 'products': products})
         
 def list_products_from_category(request, category):
     products = Product.objects.filter(category = category).order_by('name')[:20]

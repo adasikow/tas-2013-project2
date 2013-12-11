@@ -1,0 +1,93 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <style type="text/css">
+        .tg-left { text-align: left; } 
+        .tg-right { text-align: right; } 
+        .tg-center { text-align: center; }
+        .tg-bf { font-weight: bold; } 
+        .tg-it { font-style: italic; }
+        .tg-table-plain { border-collapse: collapse; border-spacing: 0; font-size: 100%; font: inherit; }
+        .tg-table-plain td, 
+        .tg-table-plain th { border: 1px #555 solid; padding: 10px; vertical-align: top; }
+    </style>
+</head>
+<body>
+
+<table class="tg-table-plain">
+  <tr>
+    <th>
+        <p>Produkty</p>
+    </th>
+    <th>
+        <p>Usługi</p>
+    </th>
+    <th>
+        {% if user.is_authenticated %}
+        <table>
+        <tr>
+            <td>
+                Welcome, {{ user.username }}!
+            </td>
+            <td>
+                <a href="/products/add">Add product</a>
+            </td>
+            <td>
+                <a href="/accounts/logout">Log out</a>
+            </td>
+        </tr>
+        </table>
+        {% else %}
+        <table>
+        <tr>
+            <td>
+                <p>Welcome, new user. Please log in.</p>
+            </td>
+            <td>
+                <form action="/accounts/login" method="post">{% csrf_token %} 
+                    {{ log_in_form }} 
+                <input type="submit" value="Log in" />
+                </form>
+            </td>
+        </tr>
+        </table>
+        {% endif %}
+    </th>
+  </tr>
+  <tr class="tg-even">
+    <td colspan="2">
+    <ul>
+        <li><a href="/products/computer">Komputery</a></li>
+        <li><a href="/products/photo"><a href="">Foto</a></li>
+        <li><a href="/products/rtv">RTV</a></li>
+        <li><a href="/products/agd">AGD</a></li>
+        <li><a href="/products/office">Biuro</a></li>
+        <li><a href="/products/phones">Telefony</a></li>
+        <li><a href="/products/games">Gry</a></li>
+        <li><a href="/products/books">Książki</a></li>
+        <li><a href="/products/military">Militaria</a></li>
+        <li><a href="/products/house">Dom i Wnętrze</a></li>
+        <li><a href="/products/garden">Ogród i Narzędzia</a></li>
+        <li><a href="/products/moto">Motoryzacja</a></li>
+        <li><a href="/products/sport">Sport</a></li>
+        <li><a href="/products/clothes">Odzież</a></li>
+        <li><a href="/products/beauty">Uroda</a></li>
+        <li><a href="/products/health">Zdrowie</a></li>
+        <li><a href="/products/gifts">Prezenty</a></li>
+        <li><a href="/products/jewelry">Zegarki i biżuteria</a></li>
+        <li><a href="/products/kids">Dla dzieci</a></li>
+        <li><a href="/products/media">Filmy i muzyka</a></li>
+        <li><a href="/products/food">Żywność i napoje</a></li>
+        <li><a href="/products/hobby">Hobby i gadżety</a></li>
+        <li><a href="/products/building">Budowa i remont</a></li>
+    </ul>
+    </td>
+    <td>
+        {% block content %}
+        {% endblock %}
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

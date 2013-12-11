@@ -1,6 +1,27 @@
-{% extends "products/base.html" %}
+<html>
+<head>
+    <style type="text/css">
+        .tg-left { text-align: left; } 
+        .tg-right { text-align: right; } 
+        .tg-center { text-align: center; }
+        .tg-bf { font-weight: bold; } 
+        .tg-it { font-style: italic; }
+        .tg-table-plain { border-collapse: collapse; border-spacing: 0; font-size: 100%; font: inherit; }
+        .tg-table-plain td, 
+        .tg-table-plain th { border: 1px #555 solid; padding: 10px; vertical-align: top; }
+    </style>
+</head>
+<body>
 
-{% block content %}
+{% if user.is_authenticated %}
+  <p>Welcome, {{ user.username }}!.<a href="/accounts/logout">Log out</a></p>
+{% else %}
+  Welcome, new user. Please log in.
+  <form action="/accounts/login" method="post">{% csrf_token %} 
+    {{ log_in_form }} 
+    <input type="submit" value="Log in" />
+  </form>
+{% endif %}
 
 <table class="tg-table-plain">
     <tr>
@@ -63,5 +84,7 @@
         </td>
     </tr>
 </table>
-{% endblock %}
+
+</body>
+</html>
     

@@ -22,4 +22,4 @@ def log_in(request):
             if user.is_active:
                 login(request,user)
     
-    return HttpResponseRedirect(request.path)
+    return HttpResponseRedirect('/')
