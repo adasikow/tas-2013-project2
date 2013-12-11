@@ -19,7 +19,7 @@ def list_products(request):
 def list_products_from_category(request, category):
     products = Product.objects.filter(category = category).order_by('name')[:20]
     return render(request, 'products/category.html',
-        { 'log_in_form': AuthenticationForm(), 'products': products, 'category': category })
+        { 'log_in_form': AuthenticationForm(), 'products': products, 'category_name': Product.category_verbose(category), 'category': category })
 
 def product_page(request, product_id):
     product = Product.objects.get(id = product_id)

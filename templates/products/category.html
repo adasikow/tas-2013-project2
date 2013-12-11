@@ -2,15 +2,14 @@
 
 {% block content %}
 
-<a href='/products/{{ category }}/top'> 10 Najlepszych produktów w kategorii "{{ category }}"</a>
+<a href='/products/{{ category }}/top'> 10 Najlepszych produktów w kategorii "{{ category_name }}"</a>
 <br>
-<a href='/products/{{ category }}/worst'> 10 Najgorszych produktów w kategorii "{{ category }}"</a>
+<a href='/products/{{ category }}/worst'> 10 Najgorszych produktów w kategorii "{{ category_name }}"</a>
 
 <table>
 {% for product in products %}
         <tr>
             <td> {{ product.name }} </td>
-            <td> {{ product.get_category_display }} </td>
             <td> {{ product.producer }} </td>
             <td>
             {% if product.actual_rating %}

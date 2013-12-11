@@ -19,7 +19,7 @@ def list_services(request):
 def list_services_from_category(request, category):
     services = Service.objects.filter(category = category).order_by('name')[:20]
     return render(request, 'services/category.html',
-        { 'log_in_form': AuthenticationForm(), 'services': services, 'category': category })
+        { 'log_in_form': AuthenticationForm(), 'services': services, 'category_name': Service.category_verbose(category), 'category': category })
 
 def service_page(request, service_id):
     service = Service.objects.get(id = service_id)
