@@ -13,7 +13,11 @@
             <td> {{ product.producer }} </td>
             <td>
             {% if product.actual_rating %}
-                {{ product.actual_rating }}
+                <script>
+                    var x = {{ product.actual_rating }} ;
+                    x = x.toFixed(2);
+                    document.write(x);
+                </script>
             {% else %}
                 <i>Brak oceny</i>
             {% endif %}

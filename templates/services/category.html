@@ -13,7 +13,11 @@
             <td> {{ service.performer }} </td>
             <td>
             {% if service.actual_rating %}
-                {{ service.actual_rating }}
+                <script>
+                    var x = {{ service.actual_rating }} ;
+                    x = x.toFixed(2);
+                    document.write(x);
+                </script>
             {% else %}
                 <i>Brak oceny</i>
             {% endif %}
