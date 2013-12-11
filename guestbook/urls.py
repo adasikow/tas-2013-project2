@@ -1,5 +1,5 @@
 # Django URL configuration, "django-guestbook/guestbook/urls.py"
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 
 urlpatterns = patterns('guestbook.views',
     (r'^$',     'list_greetings'),

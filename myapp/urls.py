@@ -6,12 +6,10 @@ urlpatterns = patterns('',
     (r'^$', RedirectView.as_view(url='/products/')),
     (r'^products/', include('products.urls')),
     (r'^services/', include('services.urls')),
-    # auth specific urls
-	# nie dziala
-    #(r'^accounts/create_user/$', 'guestbook.views.create_new_user'),
-    #(r'^accounts/login/$', 'django.contrib.auth.views.login',
-    #    {'authentication_form': AuthenticationForm,
-    #    'template_name': 'guestbook/login.html',}),
-    #(r'^accounts/logout/$', 'django.contrib.auth.views.logout',
-    #    {'next_page': '/guestbook/',}),
+    (r'^guestbook/', include('guestbook.urls')),
+
+    (r'^accounts/create_user/$', 'guestbook.views.create_new_user'),
+    (r'^accounts/login/$', 'guestbook.views.log_in'),
+    (r'^accounts/logout/$', 'django.contrib.auth.views.logout',
+        {'next_page': '/guestbook/',}),
 )
