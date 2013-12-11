@@ -1,4 +1,25 @@
-   <form action="/accounts/create_user" method="post">{% csrf_token %}
-        <table>{{ create_user_form }}</table>
-        <input type="submit" value="Create New User" />
-   </form>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <style type="text/css">
+        .tg-left { text-align: left; } 
+        .tg-right { text-align: right; } 
+        .tg-center { text-align: center; }
+        .tg-bf { font-weight: bold; } 
+        .tg-it { font-style: italic; }
+        .tg-table-plain { border-collapse: collapse; border-spacing: 0; font-size: 100%; font: inherit; }
+        .tg-table-plain td, 
+        .tg-table-plain th { border: 1px #555 solid; padding: 10px; vertical-align: top; }
+    </style>
+</head>
+<body>
+<table class="tg-table-plain">
+  <tr>
+    <th>
+	   <form action="/accounts/create_user" method="post">{% csrf_token %}
+	        <table>{{ create_user_form }}</table>
+	        <input type="submit" value="Create New User" />
+	   </form>
+	</th>
+</body>
+</html>
