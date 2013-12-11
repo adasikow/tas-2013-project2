@@ -9,4 +9,4 @@ class AddServiceForm(forms.ModelForm):
 class AddServiceReviewForm(forms.ModelForm):
     class Meta:
         model = ServiceReview
-        exclude = ('date', 'service')
+        exclude = ('author', 'date', 'service')

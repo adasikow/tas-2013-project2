@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.contrib.auth.models import User
 
 class Service(models.Model):
-	"""docstring for Services"""
 	name = models.CharField(max_length = 150)
 	description = models.TextField()
 	category_choices = (
@@ -31,7 +31,7 @@ class Service(models.Model):
 
 class ServiceReview(models.Model):
     service = models.ForeignKey(Service)
-    author = models.CharField(max_length = 30, null = True, blank = True)
+    author = models.ForeignKey(User)
     date = models.DateTimeField(auto_now_add = True)
     rating_choices = (
         (1, 1),

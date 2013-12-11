@@ -1,0 +1,80 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <style type="text/css">
+        .tg-left { text-align: left; } 
+        .tg-right { text-align: right; } 
+        .tg-center { text-align: center; }
+        .tg-bf { font-weight: bold; } 
+        .tg-it { font-style: italic; }
+        .tg-table-plain { border-collapse: collapse; border-spacing: 0; font-size: 100%; font: inherit; }
+        .tg-table-plain td, 
+        .tg-table-plain th { border: 1px #555 solid; padding: 10px; vertical-align: top; }
+    </style>
+</head>
+<body>
+
+<table class="tg-table-plain">
+  <tr>
+    <th>
+        <p><a href='/products'>Produkty</a></p>
+    </th>
+    <th>
+        <p><a href='/services'>Usługi</a></p>
+    </th>
+    <th>
+        {% if user.is_authenticated %}
+        <table>
+        <tr>
+            <td>
+                Welcome, {{ user.username }}!
+            </td>
+            <td>
+                <a href="/services/add">Add service</a>
+            </td>
+            <td>
+                <a href="/accounts/logout">Log out</a>
+            </td>
+        </tr>
+        </table>
+        {% else %}
+        Welcome, new user. Please log in or <a href='/accounts/create_user'>register</a>
+        <form action="/accounts/login" method="post">{% csrf_token %} 
+            {{ log_in_form.as_p }} 
+            <input type="submit" value="Log in" />
+        </form>
+        {% endif %}
+    </th>
+  </tr>
+  <tr class="tg-even">
+    <td colspan="2">
+    <ul>
+        <li><a href="/services/building">Budowa, remont</a></li>
+        <li><a href="/services/kids">Dzieci, zwierzęta, opieka</li>
+        <li><a href="/services/education">Edukacja, szkolenia</a></li>
+        <li><a href="/services/company">Firma, biuro</a></li>
+        <li><a href="/services/graphics">Grafika, multimedia</a></li>
+        <li><a href="/services/it">Informatyka, telekomunikacja</a></li>
+        <li><a href="/services/culture">Kultura, sztuka</a></li>
+        <li><a href="/services/marketing">Marketing, reklama</a></li>
+        <li><a href="/services/moto">Motoryzacja, transport</a></li>
+        <li><a href="/services/repair">Naprawa, serwis</a></li>
+        <li><a href="/services/printing">Poligrafia</a></li>
+        <li><a href="/services/housework">Prace domowe, ogród</a></li>
+        <li><a href="/services/law">Prawo, finanse</a></li>
+        <li><a href="/services/entertainment">Rozrywka, imprezy</a></li>
+        <li><a href="/services/craft">Rzemiosło, fachowcy</a></li>
+        <li><a href="/services/sport">Sport, turystyka</a></li>
+        <li><a href="/services/translations">Teksty, tłumaczenia</a></li>
+        <li><a href="/services/health">Zdrowie, uroda</a></li>
+    </ul>
+    </td>
+    <td>
+        {% block content %}
+        {% endblock %}
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

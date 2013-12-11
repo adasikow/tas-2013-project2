@@ -14,18 +14,18 @@ def calculate_rating(id):
 def list_products(request):
     products = Product.objects.all().order_by('name')[:20]
     return render(request, 'products/ranking.html',
-        {'log_in_form': AuthenticationForm(), 'products': products})
+        { 'log_in_form': AuthenticationForm(), 'products': products})
         
 def list_products_from_category(request, category):
     products = Product.objects.filter(category = category).order_by('name')[:20]
     return render(request, 'products/category.html',
-        {'log_in_form': AuthenticationForm(), 'products': products, 'category': category })
+        { 'log_in_form': AuthenticationForm(), 'products': products, 'category': category })
 
 def product_page(request, product_id):
     product = Product.objects.get(id = product_id)
     reviews = ProductReview.objects.filter(product_id = product_id)
     return render(request, 'products/product_page.html',
-        {'log_in_form': AuthenticationForm(), 'product': product, 'reviews': reviews, 'form': AddProductReviewForm() })
+        { 'log_in_form': AuthenticationForm(), 'product': product, 'reviews': reviews, 'form': AddProductReviewForm() })
         
 def add_product(request):
     if request.method == 'POST':
@@ -33,7 +33,8 @@ def add_product(request):
         if form.is_valid():
             product = form.save(commit = False)
             product.save()
-    return render(request, 'products/add_product.html', {'add_product_form': AddProductForm()})
+    return render(request, 'products/add_product.html',
+        { 'add_product_form': AddProductForm() })
 
 def add_product_review(request, product_id):
     if request.method == 'POST':
@@ -54,7 +55,7 @@ def list_top_products(request, category = None):
     else:
         top_products = Product.objects.filter(category = category).order_by('-actual_rating')[:10]
     return render(request, 'products/ranking.html',
-        {'log_in_form': AuthenticationForm(), 'products' : top_products })
+        { 'log_in_form': AuthenticationForm(), 'products' : top_products })
 
 def list_worst_products(request, category = None):
     if(category is None):
@@ -63,15 +64,3 @@ def list_worst_products(request, category = None):
         worst_products = Product.objects.filter(category = category).order_by('actual_rating')[:10]
     return render(request, 'products/ranking.html',
         {'log_in_form': AuthenticationForm(), 'products' : worst_products })
-
-'''        
-def list_top_products_from_category(request, category):
-    top_products_from_category = Product.objects.filter(category = category).order_by('-actual_rating')[:10]
-    return render(request, 'products/ranking.html',
-        { 'products' : top_products_from_category })
-
-def list_worst_products_from_category(request, category):
-    worst_products_from_category = Product.objects.filter(category = category).order_by('actual_rating')[:10]
-    return render(request, 'products/ranking.html',
-        { 'products' : worst_products_from_category })
-'''
