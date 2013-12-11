@@ -1,0 +1,68 @@
+{% extends "products/index.html" %}
+
+{% block content %}
+<table>
+    {% for product in products %}
+    <tr>
+        <td> {{ product.name }} </td>
+        <td> {{ product.category }} </td>
+        <td> {{ product.producer }} </td>
+        <td>
+        {% if product.actual_rating %}
+            {{ product.actual_rating }}
+        {% else %}
+        <i>Brak oceny</i>
+            {% endif %}
+        </td>
+        <td> <a href='/products/{{ product.id }}'>Strona produktu</a>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+
+
+{% block loginPanel %}
+<table>
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}!.<a href="/accounts/logout">Log out</a></p>
+    <a href="/products/add">Dodaj produkt</a><br>
+    <a href="/services/add">Dodaj usługę</a>
+</form>
+{% else %}
+    Welcome, new user. Please log in.
+    <form action="/accounts/login" method="post">{% csrf_token %} 
+        {{ log_in_form }} 
+    <input type="submit" value="Log in" />
+    </form>
+{% endif %}
+</table>
+{% endblock %}
+
+
+{% block category_list %}
+<ul>
+    <li><a href="/products/computer">Komputery</a></li>
+    <li><a href="/products/photo"><a href="">Foto</a></li>
+    <li><a href="/products/rtv">RTV</a></li>
+    <li><a href="/products/agd">AGD</a></li>
+    <li><a href="/products/office">Biuro</a></li>
+    <li><a href="/products/phones">Telefony</a></li>
+    <li><a href="/products/games">Gry</a></li>
+    <li><a href="/products/books">Książki</a></li>
+    <li><a href="/products/military">Militaria</a></li>
+    <li><a href="/products/house">Dom i Wnętrze</a></li>
+    <li><a href="/products/garden">Ogród i Narzędzia</a></li>
+    <li><a href="/products/moto">Motoryzacja</a></li>
+    <li><a href="/products/sport">Sport</a></li>
+    <li><a href="/products/clothes">Odzież</a></li>
+    <li><a href="/products/beauty">Uroda</a></li>
+    <li><a href="/products/health">Zdrowie</a></li>
+    <li><a href="/products/gifts">Prezenty</a></li>
+    <li><a href="/products/jewelry">Zegarki i biżuteria</a></li>
+    <li><a href="/products/kids">Dla dzieci</a></li>
+    <li><a href="/products/media">Filmy i muzyka</a></li>
+    <li><a href="/products/food">Żywność i napoje</a></li>
+    <li><a href="/products/hobby">Hobby i gadżety</a></li>
+    <li><a href="/products/building">Budowa i remont</a></li>
+</ul>
+{% endblock %}

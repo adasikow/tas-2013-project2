@@ -1,35 +1,43 @@
-﻿{% if user.is_authenticated %}
-  <p>Welcome, {{ user.username }}!.<a href="/accounts/logout">Log out</a></p>
-{% else %}
-  Welcome, new user. Please log in.
-  <form action="/accounts/login" method="post">{% csrf_token %} 
-    {{ log_in_form }} 
-    <input type="submit" value="Log in" />
-  </form>
-{% endif %}
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <style type="text/css">
+        .tg-left { text-align: left; } 
+        .tg-right { text-align: right; } 
+        .tg-center { text-align: center; }
+        .tg-bf { font-weight: bold; } 
+        .tg-it { font-style: italic; }
+        .tg-table-plain { border-collapse: collapse; border-spacing: 0; font-size: 100%; font: inherit; }
+        .tg-table-plain td, 
+        .tg-table-plain th { border: 1px #555 solid; padding: 10px; vertical-align: top; }
+    </style>
+</head>
+<body>
 
-<a href='/products/top'> 10 Najlepszych produktów </a>
-<a href='/products/worst'> 10 Najgorszych produktów </a>
-
-<form action="/products/add" method="post">{% csrf_token %}
-    <table>{{ form }}</table>
-    <input type="submit" value="Dodaj produkt" />
-</form>
-
-<table>
-{% for product in products %}
-        <tr>
-            <td> {{ product.name }} </td>
-            <td> {{ product.category }} </td>
-            <td> {{ product.producer }} </td>
-            <td>
-            {% if product.actual_rating %}
-                {{ product.actual_rating }}
-            {% else %}
-                <i>Brak oceny</i>
-            {% endif %}
-            </td>
-            <td> <a href='/products/{{ product.id }}'>Strona produktu</a>
-        </tr>
-{% endfor %}
+<table class="tg-table-plain">
+  <tr>
+    <th>
+        <p>Produkty</p>
+    </th>
+    <th>
+        <p>Usługi</p>
+    </th>
+    <th>
+        {% block loginPanel %}
+        {% endblock %}
+    </th>
+  </tr>
+  <tr class="tg-even">
+    <td colspan="2">
+        {% block category_list %}
+        {% endblock %}
+    </td>
+    <td>
+        {% block content %}
+        {% endblock %}
+    </td>
+  </tr>
 </table>
+
+</body>
+</html>

@@ -1,14 +1,4 @@
-{% if user.is_authenticated %}
-  <p>Welcome, {{ user.username }}!.<a href="/accounts/logout">Log out</a></p>
-{% else %}
-  Welcome, new user. Please log in.
-  <form action="/accounts/login" method="post">{% csrf_token %} 
-    {{ log_in_form }} 
-    <input type="submit" value="Log in" />
-  </form>
-{% endif %}
-
-   <form action="/products/add" method="post">{% csrf_token %}
-        <table>{{ form }}</table>
-        <input type="submit" value="Dodaj produkt" />
-   </form>
+<form action="/products/add" method="post">{% csrf_token %}
+  <table>{{ form }}</table>
+  <input type="submit" value="Dodaj produkt" />
+</form>
