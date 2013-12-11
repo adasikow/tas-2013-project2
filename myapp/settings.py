@@ -122,7 +122,6 @@ INSTALLED_APPS = (
     'djangotoolbox',
     'autoload',
     'dbindexer',
-	'guestbook',
     'products',
     'services',
     'accounts',

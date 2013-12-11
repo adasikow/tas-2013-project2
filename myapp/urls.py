@@ -6,6 +6,5 @@ urlpatterns = patterns('',
     (r'^$', RedirectView.as_view(url='/products/')),
     (r'^products/', include('products.urls')),
     (r'^services/', include('services.urls')),
-    (r'^guestbook/', include('guestbook.urls')),
     (r'^accounts/', include('accounts.urls')),
 )
