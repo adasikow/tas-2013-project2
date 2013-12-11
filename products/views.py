@@ -12,12 +12,12 @@ def calculate_rating(id):
     return sum_of_ratings / len(reviews)
 
 def list_products(request):
-    products = Product.objects.all().order_by('name')[:20]
+    products = Product.objects.all().order_by('-actual_rating')[:20]
     return render(request, 'products/ranking.html',
         { 'log_in_form': AuthenticationForm(), 'products': products})
         
 def list_products_from_category(request, category):
-    products = Product.objects.filter(category = category).order_by('name')[:20]
+    products = Product.objects.filter(category = category).order_by('name')
     return render(request, 'products/category.html',
         { 'log_in_form': AuthenticationForm(), 'products': products, 'category_name': Product.category_verbose(category), 'category': category })
 

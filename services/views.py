@@ -12,12 +12,12 @@ def calculate_rating(id):
     return sum_of_ratings / len(reviews)
 
 def list_services(request):
-    services = Service.objects.all().order_by('name')[:20]
+    services = Service.objects.all().order_by('-actual_rating')[:20]
     return render(request, 'services/ranking.html',
         { 'log_in_form': AuthenticationForm(), 'services': services })
 
 def list_services_from_category(request, category):
-    services = Service.objects.filter(category = category).order_by('name')[:20]
+    services = Service.objects.filter(category = category).order_by('name')
     return render(request, 'services/category.html',
         { 'log_in_form': AuthenticationForm(), 'services': services, 'category_name': Service.category_verbose(category), 'category': category })
 
