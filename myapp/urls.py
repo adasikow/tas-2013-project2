@@ -7,9 +7,5 @@ urlpatterns = patterns('',
     (r'^products/', include('products.urls')),
     (r'^services/', include('services.urls')),
     (r'^guestbook/', include('guestbook.urls')),
-
-    (r'^accounts/create_user/$', 'guestbook.views.create_new_user'),
-    (r'^accounts/login/$', 'guestbook.views.log_in'),
-    (r'^accounts/logout/$', 'django.contrib.auth.views.logout',
-        {'next_page': '/guestbook/',}),
+    (r'^accounts/', include('accounts.urls')),
 )

@@ -1,3 +1,13 @@
+{% if user.is_authenticated %}
+  <p>Welcome, {{ user.username }}!.<a href="/accounts/logout">Log out</a></p>
+{% else %}
+  Welcome, new user. Please log in.
+  <form action="/accounts/login" method="post">{% csrf_token %} 
+    {{ log_in_form }} 
+    <input type="submit" value="Log in" />
+  </form>
+{% endif %}
+
 <table>
     <tr>
         <td> {{ product.name }} </td>
@@ -14,10 +24,14 @@
     </tr>
 </table>
 
-<form action="{{ product.id }}/add_review" method="post">{% csrf_token %}
-        <table>{{ form }}</table>
-        <input type="submit" value="Dodaj recenzje" />
-</form>
+{% if user.is_authenticated %}
+    <form action="{{ product.id }}/add_review" method="post">{% csrf_token %}
+            <table>{{ form }}</table>
+            <input type="submit" value="Dodaj recenzje" />
+    </form>
+{% else %}
+    <p>Zaloguj się, aby ocenić produkt</p>
+{% endif %}
 
 Recenzje produktu:
 <table>

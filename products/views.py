@@ -2,6 +2,7 @@ from django.shortcuts import render
 from products.forms import *
 from products.models import *
 from django.http import HttpResponseRedirect
+from django.contrib.auth.forms import AuthenticationForm
 
 def calculate_rating(id):
     reviews = ProductReview.objects.filter(product_id = id)
@@ -13,18 +14,18 @@ def calculate_rating(id):
 def list_products(request):
     products = Product.objects.all().order_by('name')[:20]
     return render(request, 'products/index.html',
-        { 'products': products, 'form': AddProductForm() })
+        {'log_in_form': AuthenticationForm(), 'products': products, 'form': AddProductForm() })
         
 def list_products_from_category(request, category):
     products = Product.objects.filter(category = category).order_by('name')[:20]
     return render(request, 'products/category.html',
-        { 'products': products, 'category': category })
+        {'log_in_form': AuthenticationForm(), 'products': products, 'category': category })
 
 def product_page(request, product_id):
     product = Product.objects.get(id = product_id)
     reviews = ProductReview.objects.filter(product_id = product_id)
     return render(request, 'products/product_page.html',
-        { 'product': product, 'reviews': reviews, 'form': AddProductReviewForm() })
+        {'log_in_form': AuthenticationForm(), 'product': product, 'reviews': reviews, 'form': AddProductReviewForm() })
         
 def add_product(request):
     if request.method == 'POST':
@@ -52,7 +53,7 @@ def list_top_products(request, category = None):
     else:
         top_products = Product.objects.filter(category = category).order_by('-actual_rating')[:10]
     return render(request, 'products/ranking.html',
-        { 'products' : top_products })
+        {'log_in_form': AuthenticationForm(), 'products' : top_products })
 
 def list_worst_products(request, category = None):
     if(category is None):
@@ -60,7 +61,7 @@ def list_worst_products(request, category = None):
     else:
         worst_products = Product.objects.filter(category = category).order_by('actual_rating')[:10]
     return render(request, 'products/ranking.html',
-        { 'products' : worst_products })
+        {'log_in_form': AuthenticationForm(), 'products' : worst_products })
 
 '''        
 def list_top_products_from_category(request, category):

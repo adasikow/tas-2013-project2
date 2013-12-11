@@ -5,6 +5,7 @@ from django.shortcuts import render
 #from django.views.generic import RedirectView
 from guestbook.forms import *
 from guestbook.models import *
+from accounts.views import *
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
@@ -46,7 +47,7 @@ def create_greeting(request):
             greeting.save()
             cache.delete('greetings')
     return HttpResponseRedirect('/guestbook/')
-    
+'''
 def create_new_user(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -73,4 +74,5 @@ def log_in(request):
             if user.is_active:
                 login(request,user)
                 return HttpResponseRedirect('/guestbook/')
+                '''
                 
