@@ -17,10 +17,10 @@
 <table class="tg-table-plain">
   <tr>
     <th>
-        <p>Produkty</p>
+        <p><a href='/products'>Produkty</a></p>
     </th>
     <th>
-        <p>Usługi</p>
+        <p><a href='/services'>Usługi</a></p>
     </th>
     <th>
         {% if user.is_authenticated %}
@@ -38,19 +38,11 @@
         </tr>
         </table>
         {% else %}
-        <table>
-        <tr>
-            <td>
-                <p>Welcome, new user. Please log in.</p>
-            </td>
-            <td>
-                <form action="/accounts/login" method="post">{% csrf_token %} 
-                    {{ log_in_form }} 
-                <input type="submit" value="Log in" />
-                </form>
-            </td>
-        </tr>
-        </table>
+        Welcome, new user. Please log in or <a href='/accounts/create_user'>register</a>
+        <form action="/accounts/login" method="post">{% csrf_token %} 
+            {{ log_in_form.as_p }} 
+            <input type="submit" value="Log in" />
+        </form>
         {% endif %}
     </th>
   </tr>
