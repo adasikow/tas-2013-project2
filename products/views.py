@@ -42,6 +42,7 @@ def add_product_review(request, product_id):
             product_review = form.save(commit = False)
             product = Product.objects.get(id = product_id)
             product_review.product = product
+            product_review.author = request.user
             product_review.save()
             product.actual_rating = calculate_rating(product_id)
             product.save()

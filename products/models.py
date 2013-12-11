@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.contrib.auth.models import User
 
 class Product(models.Model):
     name = models.CharField(max_length = 150)
@@ -35,7 +36,7 @@ class Product(models.Model):
 
 class ProductReview(models.Model):
     product = models.ForeignKey(Product)
-    author = models.CharField(max_length = 30, null = True, blank = True)
+    author = models.ForeignKey(User)
     date = models.DateTimeField(auto_now_add = True)
     rating_choices = (
         (1, 1),

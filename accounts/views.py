@@ -21,4 +21,5 @@ def log_in(request):
         if user is not None:
             if user.is_active:
                 login(request,user)
-                return HttpResponseRedirect('/products/')
+    
+    return HttpResponseRedirect(request.path)

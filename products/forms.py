@@ -9,4 +9,4 @@ class AddProductForm(forms.ModelForm):
 class AddProductReviewForm(forms.ModelForm):
     class Meta:
         model = ProductReview
-        exclude = ('date', 'product')
+        exclude = ('author', 'date', 'product')
