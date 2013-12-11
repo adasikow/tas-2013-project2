@@ -46,4 +46,15 @@ indexes:
 - kind: services_service
   properties:
   - name: category
+  - name: actual_rating
+
+- kind: services_service
+  properties:
+  - name: category
+  - name: actual_rating
+    direction: desc
+
+- kind: services_service
+  properties:
+  - name: category
   - name: name
