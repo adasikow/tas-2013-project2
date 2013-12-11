@@ -1,4 +1,31 @@
-<form action="/products/add" method="post">{% csrf_token %}
-  <table>{{ form }}</table>
-  <input type="submit" value="Dodaj produkt" />
-</form>
+<html>
+<head>
+	<style type="text/css">
+        .tg-left { text-align: left; } 
+        .tg-right { text-align: right; } 
+        .tg-center { text-align: center; }
+        .tg-bf { font-weight: bold; } 
+        .tg-it { font-style: italic; }
+        .tg-table-plain { border-collapse: collapse; border-spacing: 0; font-size: 100%; font: inherit; }
+        .tg-table-plain td, 
+        .tg-table-plain th { border: 1px #555 solid; padding: 10px; vertical-align: top; }
+    </style>
+</head>
+<body>
+	
+<table class="tg-table-plain">
+	<tr>
+		<th>
+			<form action="/products/add" method="post">{% csrf_token %}
+				<table>{{ add_product_form }}</table>
+				<input type="submit" value="Dodaj produkt" />
+				<a href="/products/">
+				   <input type="button" value="Anuluj" />
+				</a>
+			</form>
+		</th>
+	</tr>
+</table>
+
+</body>
+</html>

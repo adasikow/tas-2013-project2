@@ -1,13 +1,30 @@
 <html>
 <head>
-	<title></title>
 </head>
 <body>
-	<table>
-	<form action="/services/add" method="post">{% csrf_token %}
-	    <table>{{ form }}</table>
-	    <input type="submit" value="Dodaj usługę" />
-	</form>
+	<style type="text/css">
+        .tg-left { text-align: left; } 
+        .tg-right { text-align: right; } 
+        .tg-center { text-align: center; }
+        .tg-bf { font-weight: bold; } 
+        .tg-it { font-style: italic; }
+        .tg-table-plain { border-collapse: collapse; border-spacing: 0; font-size: 100%; font: inherit; }
+        .tg-table-plain td, 
+        .tg-table-plain th { border: 1px #555 solid; padding: 10px; vertical-align: top; }
+    </style>
+<table class="tg-table-plain">
+	<tr>
+		<th>
+		<form action="/services/add" method="post">{% csrf_token %}
+		    <table>{{ add_service_form }}</table>
+		    <input type="submit" value="Dodaj usługę" />
+		    <a href="/services/">
+				<input type="button" value="Anuluj" />
+			</a>
+		</form>
+		</th>
+	</tr>
 </table>
+
 </body>
 </html>

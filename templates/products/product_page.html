@@ -1,3 +1,18 @@
+<html>
+<head>
+    <style type="text/css">
+        .tg-left { text-align: left; } 
+        .tg-right { text-align: right; } 
+        .tg-center { text-align: center; }
+        .tg-bf { font-weight: bold; } 
+        .tg-it { font-style: italic; }
+        .tg-table-plain { border-collapse: collapse; border-spacing: 0; font-size: 100%; font: inherit; }
+        .tg-table-plain td, 
+        .tg-table-plain th { border: 1px #555 solid; padding: 10px; vertical-align: top; }
+    </style>
+</head>
+<body>
+
 {% if user.is_authenticated %}
   <p>Welcome, {{ user.username }}!.<a href="/accounts/logout">Log out</a></p>
 {% else %}
@@ -8,7 +23,14 @@
   </form>
 {% endif %}
 
-<table>
+<table class="tg-table-plain">
+    <tr>
+        <th>Nazwa</th>
+        <th>Kategoria</th>
+        <th>Producent</th>
+        <th>Ocena</th>
+        <th>Opis</th>
+    </tr>
     <tr>
         <td> {{ product.name }} </td>
         <td> {{ product.category }} </td>
@@ -22,32 +44,47 @@
         </td>
         <td> {{ product.description }} </td>
     </tr>
-</table>
-
-{% if user.is_authenticated %}
-    <form action="{{ product.id }}/add_review" method="post">{% csrf_token %}
-            <table>{{ form }}</table>
-            <input type="submit" value="Dodaj recenzje" />
-    </form>
-{% else %}
-    <p>Zaloguj się, aby ocenić produkt</p>
-{% endif %}
-
-Recenzje produktu:
-<table>
-{% for review in reviews %}
     <tr>
-        <td>
-        {% if review.author %}
-            {{ review.author }}
-        {% else %}
-            <i>Anonim</i>
-        {% endif %}
+        <td colspan="5">
+            {% if user.is_authenticated %}
+                <form action="{{ product.id }}/add_review" method="post">{% csrf_token %}
+                        <table>{{ form }}</table>
+                        <input type="submit" value="Dodaj recenzje" />
+                </form>
+            {% else %}
+                <p>Zaloguj się, aby ocenić produkt</p>
+            {% endif %}
         </td>
-        <td> {{ review.date }} </td>
-        <td> {{ review.rating }} </td>
-        <td> {{ review.content }} </td>
     </tr>
-{% endfor %}
+    <tr>
+        <td colspan="5">
+            Recenzje produktu:
+            <table class="tg-table-plain">
+                <tr>
+                    <th>Autor</th>
+                    <th>Data</th>
+                    <th>Ocena</th>
+                    <th>Opis</th>
+                </tr>
+            {% for review in reviews %}
+                <tr>
+                    <td>
+                    {% if review.author %}
+                        {{ review.author }}
+                    {% else %}
+                        <i>Anonim</i>
+                    {% endif %}
+                    </td>
+                    <td> {{ review.date }} </td>
+                    <td> {{ review.rating }} </td>
+                    <td> {{ review.content }} </td>
+                </tr>
+            {% endfor %}
+            </table>
+        </td>
+    </tr>
 </table>
+
+</body>
+</html>
     
