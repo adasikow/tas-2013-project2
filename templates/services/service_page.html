@@ -12,7 +12,7 @@
     </tr>
     <tr>
         <td> {{ service.name }} </td>
-        <td> {{ service.category }} </td>
+        <td> {{ service.get_category_display }} </td>
         <td> {{ service.performer }} </td>
         <td>
         {% if service.actual_rating %}
