@@ -1,7 +1,8 @@
 {% extends "services/base.html" %}
 
 {% block content %}
-	
+
+{% if user.is_authenticated %}
 <table class="tg-table-plain">
 	<tr>
 		<th>
@@ -15,4 +16,8 @@
 		</th>
 	</tr>
 </table>
+{% else %}
+<p><i>Zaloguj się, aby dodać nową usługę.</i></p>
+{% endif %}
+
 {% endblock %}

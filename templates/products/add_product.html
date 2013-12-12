@@ -1,7 +1,8 @@
 {% extends "products/base.html" %}
 
 {% block content %}
-	
+
+{% if user.is_authenticated %}
 <table class="tg-table-plain">
 	<tr>
 		<th>
@@ -15,4 +16,8 @@
 		</th>
 	</tr>
 </table>
+{% else %}
+<p><i>Zaloguj się, aby dodać nowy produkt.</i></p>
+{% endif %}
+
 {% endblock %}
