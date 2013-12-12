@@ -24,5 +24,4 @@ def log_in(request):
             if user.is_active:
                 login(request,user)
     
-    c = RequestContext(request)
-    return HttpResponse(t.render(c))
+    return HttpResponseRedirect('/')
