@@ -1,8 +1,10 @@
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render
+from django.template import RequestContext
 
 def create_new_user(request):
     if request.method == 'POST':
@@ -22,4 +24,5 @@ def log_in(request):
             if user.is_active:
                 login(request,user)
     
-    return HttpResponseRedirect('/')
+    c = RequestContext(request)
+    return HttpResponse(t.render(c))

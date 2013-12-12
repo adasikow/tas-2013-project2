@@ -41,6 +41,7 @@
     </tr>
     <tr>
         <td colspan="5">
+        {% if reviews %}
             Recenzje produktu:
             <table class="tg-table-plain">
                 <tr>
@@ -70,6 +71,9 @@
                 </tr>
             {% endfor %}
             </table>
+        {% else %}
+            <i>Brak opinii o produkcie. Może warto dodać własną?</i>
+        {% endif %}
         </td>
     </tr>
 </table>

@@ -27,21 +27,21 @@
         <table>
         <tr>
             <td>
-                Welcome, {{ user.username }}!
+                Witaj, {{ user.username }}!
             </td>
             <td>
-                <a href="/products/add">Add product</a>
+                <a href="/products/add">Dodaj nowy produkt</a>
             </td>
             <td>
-                <a href="/accounts/logout">Log out</a>
+                <a href="/accounts/logout">Wyloguj</a>
             </td>
         </tr>
         </table>
         {% else %}
-        Welcome, new user. Please log in or <a href='/accounts/create_user'>register</a>
+        Witaj! Zaloguj się lub <a href='/accounts/create_user'>zarejestruj</a>.
         <form action="/accounts/login" method="post">{% csrf_token %} 
             {{ log_in_form.as_p }} 
-            <input type="submit" value="Log in" />
+            <input type="submit" value="Zaloguj" />
         </form>
         {% endif %}
     </th>

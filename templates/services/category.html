@@ -6,6 +6,7 @@
 <br>
 <a href='/services/{{ category }}/worst'> 10 Najgorszych produktów w kategorii "{{ category_name }}"</a>
 
+{% if services %}
 <table>
 {% for service in services %}
         <tr>
@@ -26,4 +27,8 @@
         </tr>
 {% endfor %}
 </table>
+{% else %}
+<p><i>Brak usług do wyświetlenia!</i></p>
+{% endif %}
+
 {% endblock %}
