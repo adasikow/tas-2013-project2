@@ -33,8 +33,10 @@ def add_service(request):
         if form.is_valid():
             service = form.save(commit = False)
             service.save()
+            return HttpResponseRedirect('/services/' + str(service.id))
+            
     return render(request, 'services/add_service.html',
-        { 'add_service_form': AddServiceForm() })
+        { 'log_in_form': AuthenticationForm(), 'add_service_form': AddServiceForm() })
 
 def add_service_review(request, service_id):
     if request.method == 'POST':

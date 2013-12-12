@@ -11,7 +11,7 @@ def create_new_user(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            return HttpResponseRedirect('/products/')
+            return HttpResponseRedirect('/')
     
     return render(request, 'register.html', {'create_user_form': UserCreationForm()})
     

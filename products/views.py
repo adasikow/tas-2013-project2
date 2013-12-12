@@ -33,8 +33,10 @@ def add_product(request):
         if form.is_valid():
             product = form.save(commit = False)
             product.save()
+            return HttpResponseRedirect('/products/' + str(product.id))
+            
     return render(request, 'products/add_product.html',
-        { 'add_product_form': AddProductForm() })
+        { 'log_in_form': AuthenticationForm(), 'add_product_form': AddProductForm() })
 
 def add_product_review(request, product_id):
     if request.method == 'POST':
