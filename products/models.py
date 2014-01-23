@@ -35,7 +35,7 @@ class Product(models.Model):
     def category_verbose(category):
         return dict(Product.category_choices)[category]
     
-    category = models.CharField(max_length = 30, choices = category_choices, default = 'Computer')
+    category = models.CharField(max_length = 30, choices = category_choices, default = 'computer')
     producer = models.CharField(max_length = 30)
     actual_rating = models.FloatField(null = True, blank = True, default = 0.0)
 

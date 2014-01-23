@@ -18,5 +18,5 @@ class ProductReviewTest(TestCase):
         Sprawdza, czy domyslna ocena w recenzji produktu to 5.0 oraz czy poprawnie dziala obliczanie oceny produktu
         """
         product = Product.objects.get(name = "A10-7850")
-        self.assertEqual(calculate_rating(product.id), 4.0)
+        self.assertEqual(calculate_rating(product.id), 5.0)
         
