@@ -3,6 +3,15 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Service(models.Model):
+    """
+    >>> service = Service.objects.create(name="remonty", description="uslugi remontowe", performer="budpol")
+
+    # Sprawdzenie domyslnej kategorii oraz oceny
+    >>> service.category
+    u'building'
+    >>> service.actual_rating
+    0.0
+    """
     name = models.CharField(max_length = 150)
     description = models.TextField()
     category_choices = (
@@ -31,7 +40,7 @@ class Service(models.Model):
         return dict(Service.category_choices)[category]
     
     performer = models.CharField(max_length = 100)
-    category = models.CharField(max_length = 30, choices = category_choices, default = 'Building')
+    category = models.CharField(max_length = 30, choices = category_choices, default = 'building')
     actual_rating = models.FloatField(null = True, blank = True, default = 0.0)
 
 
